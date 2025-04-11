@@ -1,0 +1,40 @@
+/* Posts list and cards */
+.posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+.post-card {
+    padding: 12px;
+    border-radius: 6px;
+    background-color: #1f1f1f;
+    border: 1px solid #333;
+}
+.post-title {
+    margin: 0 0 4px 0;
+    font-size: 1.1rem;
+    line-height: 1.4;
+}
+.post-title a {
+    color: #90caf9;
+    text-decoration: none;
+}
+.post-title a:hover {
+    text-decoration: underline;
+}
+.post-meta {
+    font-size: 0.9rem;
+    color: #aaaaaa;
+}
+.post-meta span + span {
+    margin-left: 8px;
+}
+
+  /* Thumbnail image styling */
+.post-thumb {
+    display: block;
+    margin-top: 8px;
+    max-width: 100px;
+    border-radius: 4px;
+}

@@ -1,0 +1,34 @@
+/* Topic input area */
+.topic-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 16px 0;
+    position: relative;
+}
+.topic-input input {
+    width: 100%;
+    max-width: 300px;
+    padding: 8px 32px 8px 8px; /* leave space for the clear button on the right */
+    border: 2px solid #333;
+    border-radius: 4px;
+    background-color: #2a2a2a;
+    color: #f0f0f0;
+}
+.topic-input input:focus {
+    outline: none;
+    border-color: #555;
+}
+.topic-input .clear-btn {
+    position: absolute;
+    right: calc(50% - 150px); /* 50% - half of max-width to align inside input */
+    /* Alternatively, you could wrap input and button in a relative container and position the button accordingly */
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+.topic-input .clear-btn:hover {
+    color: #fff;
+}

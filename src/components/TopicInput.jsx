@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilterTerm, clearFilter } from '../redux/filterSlice';
+import '../assets/styles/TopicInput.css'
 
 function TopicInput() {
     const dispatch = useDispatch();

@@ -1,3 +1,4 @@
+import '../assets/styles/PostCard.css'
 
 function PostCard({ post }) {
     // Destructure the fields we want to use from the post object

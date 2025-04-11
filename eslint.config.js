@@ -4,8 +4,11 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 
 export default [
-  { ignores: ['dist'] },
+  { 
+    ignores: ['dist'] 
+  },
   {
+    // Default config for JavaScript/JSX files (browser environment)
     files: ['**/*.{js,jsx}'],
     languageOptions: {
       ecmaVersion: 2020,
@@ -30,24 +33,29 @@ export default [
       ],
     },
   },
-  // ---- Add the following override for server files ----
   {
-    // Only target files in the server folder
+    // Override for files in the /server folder (Node environment)
     files: ['server/**/*.js'],
     languageOptions: {
-      // Set the environment for Node
       globals: {
         process: 'readonly',
-        __dirname: 'readonly'
+        __dirname: 'readonly',
       },
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
       },
-      env: {
-        node: true,
-      },
     },
-    // You can also add any server-specific rules here if needed.
+    env: {
+      node: true,
+    },
+  },
+  {
+    // Override for test files using Vitest
+    // This applies to any file ending in .test.js, .spec.jsx, etc.
+    files: ['**/*.{test,spec}.{js,jsx,ts,tsx}'],
+    env: {
+      vitest: true,  // Vitest automatically provides globals like describe, it, and expect.
+    },
   },
 ];
