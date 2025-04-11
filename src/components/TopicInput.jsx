@@ -1,35 +1,43 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { setFilterTerm, clearFilter } from '../redux/filterSlice';
-import '../assets/styles/TopicInput.css'
+// src/components/TopicInput.jsx
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addTrack } from '../redux/tracksSlice';
+import '../assets/styles/TopicInput.css';
 
 function TopicInput() {
     const dispatch = useDispatch();
-    const searchTerm = useSelector(state => state.filter.searchTerm);
+    const [input, setInput] = useState('');
 
-    //Filters posts according to user input
+    // Update local input state on change.
     const handleChange = (e) => {
-        dispatch(setFilterTerm(e.target.value));
+        setInput(e.target.value);
     };
-    //Clears the filter
-    const handleClear = () => {
-        dispatch(clearFilter());
+
+    // On submit, dispatch addTrack to add the tracked topic.
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const topic = input.trim();
+        if (topic !== '') {
+        dispatch(addTrack(topic));
+        setInput('');
+        }
     };
 
     return (
-        <div className="topic-input">
+        <form className="topic-input" onSubmit={handleSubmit}>
         <input
             type="text"
             placeholder="Track a topic (enter keywords)"
-            value={searchTerm}
+            value={input}
             onChange={handleChange}
             aria-label="Search posts by topic"
         />
-        {searchTerm && (
-            <button onClick={handleClear} className="clear-btn" aria-label="Clear search">
-            ×
+        {input && (
+            <button type="submit" className="submit-btn" aria-label="Add track">
+            Add
             </button>
         )}
-        </div>
+        </form>
     );
 }
 

@@ -1,9 +1,20 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 // Async thunk to fetch posts from Reddit API
-export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
-    // We will fetch from r/popular with .json
-    const response = await fetch('http://localhost:3001/reddit/popular');
+export const fetchPosts = createAsyncThunk('posts/fetchPosts', async (searchQuery = '', thunkAPI) => {
+    let url = '';
+    if (!searchQuery) {
+        //Default fetch popular posts
+        url = 'http://localhost:3001/reddit/popular'
+    } else {
+        // Fetch posts based on search query
+        url = `http://localhost:3001/reddit/search?query=${encodeURIComponent(searchQuery)}`;
+    }
+
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(`Server responded with status ${response.status}: ${response.statusText}`)
+    }
     const data = await response.json();
     // Reddit JSON structure: data.data.children is an array of posts
     // Each child has a "data" object with the post details we need.
@@ -18,9 +29,7 @@ const postsSlice = createSlice({
         status: 'idle',  // 'idle' | 'loading' | 'succeeded' | 'failed'
         error: null
     },
-    reducers: {
-        // (We might not need non-async reducers for posts in this simple app)
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder
         .addCase(fetchPosts.pending, (state) => {

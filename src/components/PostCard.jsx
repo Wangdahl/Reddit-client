@@ -1,4 +1,5 @@
-import '../assets/styles/PostCard.css'
+import '../assets/styles/PostCard.css';
+import { Link } from 'react-router-dom';
 
 function PostCard({ post }) {
     // Destructure the fields we want to use from the post object
@@ -20,9 +21,9 @@ function PostCard({ post }) {
         <article className="post-card">
         {/* Title as a link to the Reddit post */}
         <h3 className="post-title">
-            <a href={redditLink} target="_blank" rel="noopener noreferrer">
-            {title}
-            </a>
+            <Link to={`/post?permalink=${encodeURIComponent(permalink)}`}>
+                {title}
+            </Link>
         </h3>
 
         {/* Metadata section */}

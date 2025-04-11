@@ -1,51 +1,47 @@
-import { useEffect } from 'react';
+// src/containers/HomePage.jsx
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPosts } from '../redux/postsSlice';
-import TopicInput from '../components/TopicInput';
+import { loadTracks } from '../redux/tracksSlice';
 import PostCard from '../components/PostCard';
+import Sidebar from '../components/SideBar';
 
-function HomePage() {
+export default function HomePage() {
     const dispatch = useDispatch();
     const posts = useSelector(state => state.posts.items);
     const postsStatus = useSelector(state => state.posts.status);
     const error = useSelector(state => state.posts.error);
-    const searchTerm = useSelector(state => state.filter.searchTerm);
+    const defaultTrack = useSelector(state => state.tracks.defaultTrack);
 
     useEffect(() => {
-        if (postsStatus === 'idle') {
-        // Fetch posts when component mounts (only if not already loading/loaded)
-        dispatch(fetchPosts());
-        }
-    }, [postsStatus, dispatch]);
+        dispatch(loadTracks());
+    }, [dispatch]);
 
-    // Filter posts based on search term (case-insensitive)
-    const filteredPosts = posts.filter(post =>
-        post.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    useEffect(() => {
+        // Fetch posts: if defaultTrack exists, perform a search; if not, fetch popular posts.
+        dispatch(fetchPosts(defaultTrack));
+    }, [dispatch, defaultTrack]);
+
+    // Listen for refresh event from the Sidebar.
+    useEffect(() => {
+        const refreshHandler = () => {
+        dispatch(fetchPosts(defaultTrack));
+        };
+        window.addEventListener('refreshTrack', refreshHandler);
+        return () => window.removeEventListener('refreshTrack', refreshHandler);
+    }, [dispatch, defaultTrack]);
 
     return (
+        <div className="home-container">
+        <Sidebar />
         <main className="home-page">
-        {/* Topic Input for filtering */}
-        <TopicInput />
-
-        {/* Status handling */}
-        {postsStatus === 'loading' && <p>Loading posts...</p>}
-        {postsStatus === 'failed' && <p className="error">Error: {error}</p>}
-
-        {/* Posts list */}
-        {postsStatus === 'succeeded' && (
-            <div className="posts-list">
-            {filteredPosts.length > 0 ? (
-                filteredPosts.map(post => (
-                <PostCard key={post.id} post={post} />
-                ))
-            ) : (
-                <p>No posts found {searchTerm && <>for "{searchTerm}"</>}.</p>
-            )}
-            </div>
-        )}
+            {postsStatus === 'loading' && <p>Loading posts...</p>}
+            {postsStatus === 'failed' && <p>Error: {error}</p>}
+            {postsStatus === 'succeeded' && posts.length === 0 && <p>No results found for "{defaultTrack}"</p>}
+            {postsStatus === 'succeeded' && posts.map(post => (
+            <PostCard key={post.id} post={post} />
+            ))}
         </main>
+        </div>
     );
 }
-
-export default HomePage;
