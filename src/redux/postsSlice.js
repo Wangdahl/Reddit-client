@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 // Async thunk to fetch posts from Reddit API
 export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
     // We will fetch from r/popular with .json
-    const response = await fetch('https://api.reddit.com/r/popular.json?limit=50');
+    const response = await fetch('http://localhost:3001/reddit/popular');
     const data = await response.json();
     // Reddit JSON structure: data.data.children is an array of posts
     // Each child has a "data" object with the post details we need.
