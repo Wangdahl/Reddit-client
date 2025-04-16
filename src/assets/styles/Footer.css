@@ -4,6 +4,10 @@
     font-size: 0.9rem;
     color: #bbbbbb;
     background-color: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 5px 5px 0 0;
+    bottom: 0;
+    margin-top: auto;
 }
 .footer p {
     margin: 4px;

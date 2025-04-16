@@ -19,25 +19,25 @@ function PostCard({ post }) {
 
     return (
         <article className="post-card">
-        {/* Title as a link to the Reddit post */}
-        <h3 className="post-title">
-            <Link to={`/post?permalink=${encodeURIComponent(permalink)}`}>
-                {title}
-            </Link>
-        </h3>
+            {/* Title as a link to the Reddit post */}
+            <h3 className="post-title">
+                <Link to={`/post?permalink=${encodeURIComponent(permalink)}`}>
+                    {title}
+                </Link>
+            </h3>
 
-        {/* Metadata section */}
-        <div className="post-meta">
-            <span>{subreddit_name_prefixed}</span>{" "}
-            <span>• Posted by u/{author}</span>{" "}
-            <span>• 🔺 {ups}</span>{" "}
-            <span>• 💬 {num_comments}</span>
-        </div>
+            {/* Metadata section */}
+            <div className="post-meta">
+                <span>{subreddit_name_prefixed}</span>{" "}
+                <span>• Posted by u/{author}</span>{" "}
+                <span>• 🔺 {ups}</span>{" "}
+                <span>• 💬 {num_comments}</span>
+            </div>
 
-        {/* Thumbnail image (if available and not the default 'self' or 'nsfw' placeholders) */}
-        {thumbnail && thumbnail.startsWith("http") && (
-            <img src={thumbnail} alt="thumbnail" className="post-thumb" />
-        )}
+            {/* Thumbnail image (if available and not the default placeholders) */}
+            {thumbnail && thumbnail.startsWith("http") && (
+                <img src={thumbnail} alt="thumbnail" className="post-thumb" />
+            )}
         </article>
     );
 }

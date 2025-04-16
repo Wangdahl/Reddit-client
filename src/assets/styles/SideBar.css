@@ -13,9 +13,17 @@ ul.tracked-topics {
 li.tracked-topic {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding-bottom: 0.5rem;
 }
-
+.tracked-btn {
+    border: 1px solid #333;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: capitalize;
+}
 .remove-btn {
     width: 45px;
     height: 45px;
@@ -25,6 +33,8 @@ li.tracked-topic {
     justify-content: center;
     color: #AAAA;
     background: none;
+    border-color: none;
+    font-size: 0.9rem;
 }
 
 .refresh-btn {
@@ -36,4 +46,5 @@ li.tracked-topic {
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
+    border: 1px solid #333;
 }

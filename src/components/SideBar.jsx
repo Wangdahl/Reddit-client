@@ -30,7 +30,7 @@ export default function Sidebar() {
                 <button
                     type="button"
                     onClick={() => handleSetDefault(topic)}
-                    className={topic === defaultTrack ? 'default-track' : ''}
+                    className="tracked-btn"
                 >
                     {topic}
                 </button>
@@ -40,7 +40,7 @@ export default function Sidebar() {
                     aria-label={`Remove ${topic}`}
                     className="remove-btn"
                 >
-                    <i class="fas fa-trash"></i>
+                    <i className="fas fa-trash"></i>
                     
                 </button>
                 </li>
