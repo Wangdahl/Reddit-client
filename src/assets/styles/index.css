@@ -21,6 +21,8 @@ body {
   min-height: 100vh;
   background-color: #121212;
   color: #e0e0e0;
+  display: flex;
+  justify-content: center;
 }
 
 h1 {
@@ -38,6 +40,8 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  width: 150px;
+  color: white;
 }
 button:hover {
   border-color: #646cff;

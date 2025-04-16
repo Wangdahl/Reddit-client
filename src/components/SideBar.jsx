@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { removeTrack, setDefaultTrack } from '../redux/tracksSlice';
 import TopicInput from './TopicInput';
+import '../assets/styles/SideBar.css'
 
 export default function Sidebar() {
     const dispatch = useDispatch();
@@ -39,7 +40,8 @@ export default function Sidebar() {
                     aria-label={`Remove ${topic}`}
                     className="remove-btn"
                 >
-                    Remove
+                    <i class="fas fa-trash"></i>
+                    
                 </button>
                 </li>
             ))}

@@ -1,0 +1,39 @@
+.sidebar {
+    max-height: 85vh;
+    position: sticky;
+    top: 0;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+}
+ul.tracked-topics {
+    list-style: none;
+    padding-left: 0;
+}
+li.tracked-topic {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0.5rem;
+}
+
+.remove-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #AAAA;
+    background: none;
+}
+
+.refresh-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}

@@ -5,6 +5,7 @@ import { fetchPosts } from '../redux/postsSlice';
 import { loadTracks } from '../redux/tracksSlice';
 import PostCard from '../components/PostCard';
 import Sidebar from '../components/SideBar';
+import '../assets/styles/HomePage.css'
 
 export default function HomePage() {
     const dispatch = useDispatch();
