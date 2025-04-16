@@ -1,4 +1,7 @@
 .header {
+    position: sticky;
+    top: 0;
+    z-index: 2;
     padding: 16px;
     background-color: #1e1e1e;
     color: #ffffff;
@@ -19,4 +22,20 @@
     margin-left: auto;
     margin-right: auto;
     padding: 0.5rem;
+}
+
+/* Mobile menu stuff */
+.mobile-menu-toggle {
+    display: none;
+    width: 45px;
+    height: 45px;
+    font-size: 1.2rem;
+    border: 1px solid #333;
+}
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }

@@ -139,18 +139,21 @@ export default function PostDetail() {
             <p className='poster'>Posted by u/{postData.author}</p>
 
             {renderPostContent(postData)}
-            <button 
-                onClick={() => {
+            <div className="back-btn-wrapper">
+                <button 
+                    onClick={() => {
                     if (window.history.length > 2) {
                         navigate(-1);
                     } else {
                         navigate('/');
                     }
-                }}
-                className='back-btn'>
+                    }}
+                    className="back-btn"
+                >
                     <i className="fa-solid fa-arrow-left-long"></i>
                     Back to Posts
-            </button>
+                </button>
+            </div>
             <h3>Comments</h3>
             {comments.length ? (
                 <ul>

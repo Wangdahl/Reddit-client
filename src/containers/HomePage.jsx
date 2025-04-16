@@ -7,7 +7,7 @@ import PostCard from '../components/PostCard';
 import Sidebar from '../components/SideBar';
 import '../assets/styles/HomePage.css'
 
-export default function HomePage() {
+export default function HomePage({ isSidebarOpen, setIsSidebarOpen }) {
     const dispatch = useDispatch();
     const posts = useSelector((state) => state.posts.items);
     const postsStatus = useSelector((state) => state.posts.status);
@@ -44,9 +44,9 @@ export default function HomePage() {
     }, [dispatch, defaultTrack, tracksLoaded]);
 
     return (
-        <div className="home-container">
+        <div className={`home-container ${isSidebarOpen ? 'sidebar-open' : ''}`}>
         <Sidebar />
-        <main className="home-page">
+        <main className="home-page" onClick={() => setIsSidebarOpen(false)}>
             {postsStatus === 'loading' && <p>Loading posts...</p>}
             {postsStatus === 'failed' && <p>Error: {error}</p>}
             {postsStatus === 'succeeded' && posts.length === 0 && (

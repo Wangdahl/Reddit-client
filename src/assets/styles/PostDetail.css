@@ -56,3 +56,11 @@
 .comment p {
     margin: 0;
 }
+
+.back-btn-wrapper {
+    position: sticky;
+    top: 6rem;
+    z-index: 999;
+    background: inherit;
+    padding-bottom: 1rem;
+}
